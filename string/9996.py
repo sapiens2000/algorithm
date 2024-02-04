@@ -1,24 +1,11 @@
-import sys
-
-n = int(sys.stdin.readline())
-head, tail = sys.stdin.readline().rstrip().split(sep='*')
+n = int(input())
+pattern = input().split('*')
+l = len(pattern[0]) + len(pattern[1])
 
 for _ in range(n):
-    tmp = sys.stdin.readline().rstrip()
-    same = True
+    arr = input()
 
-    if len(tmp) < len(head) + len(tail):
-        print('NE')
-        continue
-    for i in range(len(head)):
-        if head[i] != tmp[i]:
-            same = False
-
-    for i in range(len(tail)):
-        if tail[i] != tmp[i-len(tail)]:
-            same = False
-
-    if same:
+    if len(arr) >= l and arr[:len(pattern[0])] == pattern[0][:] and arr[-len(pattern[1]):] == pattern[1][:]:
         print('DA')
     else:
         print('NE')
