@@ -1,43 +1,50 @@
 from collections import deque
 
 n, m = map(int, input().split())
-graph = []
-
-
+mat = []
 visited = [[[0] * 2 for _ in range(m)] for _ in range(n)]
-visited[0][0][0] = 1
 
-for i in range(n):
-    graph.append(list(map(int, input())))
-
-
-dx = [0, 0, 1, -1]
-dy = [1, -1, 0, 0]
+for _ in range(n):
+    mat.append(list(map(int, input())))
 
 
-def bfs(x, y, z):
-    queue = deque()
-    queue.append((x, y, z))
+def check(x, y):
+    if x < 0 or x >= n or y < 0 or y >= m:
+        return False
+    return True
 
-    while queue:
-        a, b, c = queue.popleft()
 
-        if a == n - 1 and b == m - 1:
-            return visited[a][b][c]
+def bfs():
+    dx = [0, 1, 0, -1]
+    dy = [1, 0, -1, 0]
+
+    q = deque()
+    q.append((0, 0, 0))
+    visited[0][0][0] = 1
+
+    while q:
+        x, y, flag = q.popleft()
+
+        if x == n-1 and y == m-1:
+            return visited[x][y][flag]
+
         for i in range(4):
-            nx = a + dx[i]
-            ny = b + dy[i]
-            if nx < 0 or nx >= n or ny < 0 or ny >= m:
-                continue
+            nx = x + dx[i]
+            ny = y + dy[i]
 
-            if graph[nx][ny] == 1 and c == 0 :
-                visited[nx][ny][1] = visited[a][b][0] + 1
-                queue.append((nx, ny, 1))
+            if check(nx, ny):
+                # 벽 아니고 이동 가능한 경우
+                if mat[nx][ny] == 0 and visited[nx][ny][flag] == 0:
+                    q.append((nx, ny, flag))
+                    visited[nx][ny][flag] = visited[x][y][flag] + 1
 
-            elif graph[nx][ny] == 0 and visited[nx][ny][c] == 0:
-                visited[nx][ny][c] = visited[a][b][c] + 1
-                queue.append((nx, ny, c))
+                # 벽이고 부술수 있는 경우
+                elif mat[nx][ny] == 1 and flag == 0:
+                    q.append((nx, ny, 1))
+                    visited[nx][ny][1] = visited[x][y][0] + 1
     return -1
 
 
-print(bfs(0, 0, 0))
+print(bfs())
+
+
