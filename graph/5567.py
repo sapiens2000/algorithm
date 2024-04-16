@@ -30,9 +30,3 @@ for _ in range(m):
     g[y].append(x)
 
 print(bfs(1))
-
-
-
-
-
-
