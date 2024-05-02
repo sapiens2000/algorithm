@@ -10,14 +10,12 @@ def bfs():
     dy = [1, 0, -1, 0]
     q = deque()
 
-
     while q:
         x, y = q.popleft()
 
         for i in range(8):
             nx = x + dx[i]
             ny = y + dy[i]
-
 
 
 bfs()
