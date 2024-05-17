@@ -1,5 +1,5 @@
 t = int(input())
-dic = ['a','e','i','o','u']
+dic = ['a', 'e', 'i', 'o', 'u']
 
 
 for case in range(1, t+1):
