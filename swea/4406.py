@@ -10,6 +10,5 @@ for case in range(1, t+1):
         if c in dic:
             continue
         tmp.append(c)
-
     result = ''.join(tmp)
     print(f'#{case} {result}')
