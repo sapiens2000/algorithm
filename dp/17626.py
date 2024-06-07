@@ -8,4 +8,6 @@ d[3] = 3
 for i in range(4,50001):
 
     for j in range(1, i):
-        if j**2 == 
+        if j**2 ==
+
+
