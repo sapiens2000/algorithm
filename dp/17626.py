@@ -10,4 +10,3 @@ for i in range(4,50001):
     for j in range(1, i):
         if j**2 ==
 
-
