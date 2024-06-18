@@ -17,23 +17,21 @@ for _ in range(t):
     length = 0
 
     # s[0] : 지점 거리 , s[1] :지점 무게
-    for i in range(len(spots)):
+    for i in range(n):
         length = spots[i][0]
 
-        # 쓰레기 용량이 넘치지 않으면 실음(방문)
+        # 쓰레기 용량이 넘치지 않으면 적재(방문)
         if weight + spots[i][1] < w:
             weight += spots[i][1]
-        # 가득 차면 쓰레기장 방문
-        elif weight + spots[i][1] == w and i != n-1:
+        # 가득 찰 경우 쓰레기장 방문
+        elif weight + spots[i][1] == w:
             weight = 0
-            result += (2*length)
-        # 가득 차고 마지막 방문
-        elif weight + spots[i][1] == w and i == n - 1:
-            break
+            result += length
         # 용량이 넘치면 복귀후 실음
         else:
             weight = spots[i][1]
             result += (3*length)
 
+    # 마지막 지점까지 이동 거리
     result += length
     print(result)
